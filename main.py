@@ -20,6 +20,20 @@ def delete_task():
         listbox.delete(selected[0])
 
 
+def complete_task():
+    selected = listbox.curselection()
+    for index in selected:
+        task_text = listbox.get(index)
+        # Если ещё не отмечено как выполнено
+        if not task_text.startswith("✔ "):
+            listbox.delete(index)
+            listbox.insert(index, f"✔ {task_text}")
+            listbox.itemconfig(index, fg="gray")
+
+
+btn_complete = tk.Button(window, text="Выполнено", width=15, bg="#b4f2a1", command=complete_task)
+btn_complete.pack(pady=5)
+
 delete_btn = tk.Button(window, text="Удалить задачу", command=delete_task)
 delete_btn.pack()
 
