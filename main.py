@@ -20,6 +20,9 @@ def delete_task():
         listbox.delete(selected[0])
 
 
+delete_btn = tk.Button(window, text="Удалить задачу", command=delete_task)
+delete_btn.pack()
+
 btn = tk.Button(window, text="Добавить задачу", command=add_task)
 btn.pack()
 
