@@ -3,6 +3,9 @@ import tkinter as tk
 window = tk.Tk()
 window.title("Мой ToDo-лист")
 
+# Добавим переменную для темы
+dark_mode = False
+
 entry = tk.Entry(window, width=40)
 entry.pack(pady=10)
 
@@ -30,6 +33,22 @@ def complete_task():
             listbox.insert(index, f"✔ {task_text}")
             listbox.itemconfig(index, fg="gray")
 
+
+def toggle_theme():
+    global dark_mode
+    dark_mode = not dark_mode
+    if dark_mode:
+        window.config(bg="#2e2e2e")
+        listbox.config(bg="#3c3c3c", fg="white")
+        entry.config(bg="#3c3c3c", fg="white")
+    else:
+        window.config(bg="white")
+        listbox.config(bg="white", fg="black")
+        entry.config(bg="white", fg="black")
+
+# Кнопка переключения темы
+btn_theme = tk.Button(window, text="Сменить тему", width=15, command=toggle_theme)
+btn_theme.pack(pady=5)
 
 btn_complete = tk.Button(window, text="Выполнено", width=15, bg="#b4f2a1", command=complete_task)
 btn_complete.pack(pady=5)
